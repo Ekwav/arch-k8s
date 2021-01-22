@@ -3,25 +3,25 @@ pacman -S --noconfirm nano htop git
 # dependencies
 pacman -S --noconfirm curl #cri-o # etcd should be installed as per wiki
 
-#master
+#master only
 pacman -S --noconfirm  kubernetes-control-plane 
 
 # worker
-#pacman -S --noconfirm  kubernetes-node
+# pacman -S --noconfirm  kubernetes-node
 
 # setup stuff
 pacman -S --noconfirm containerd kubectl kubeadm
 
 echo "enabling kubelet"
-systemctl enable kubelet.service crio.service
-systemctl start kubelet.service crio.service
+systemctl enable kubelet.service
+systemctl start kubelet.service
 
 echo "turning swap off"
 swapoff -a
 cp coflnet-start.service /lib/systemd/system/coflnet-start.service
 sudo systemctl enable coflnet-start
 
-
+# -> configure
 cat <<EOF | tee /etc/modules-load.d/containerd.conf
 br_netfilter
 EOF
