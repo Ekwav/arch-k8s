@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: longhorn
+  namespace: longhorn-system
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`longhorn.flou21.de`)
+      kind: Rule
+      services:
+        - name: longhorn-frontend
+          namespace: longhorn-system
+          port: 80

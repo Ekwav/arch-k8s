@@ -43,7 +43,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls: false
   routes:
     - match: Host(`api-dashboard.flou21.de`)
       kind: Rule
